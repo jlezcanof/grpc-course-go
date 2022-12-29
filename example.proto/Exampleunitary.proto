@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+// Espero no lo hayas olvidado :D 
+package reminders;
+
+// No es requisito de esta funcionalidad pero es bueno tenerlo
+// para la generación de código en diferentes lenguajes
+
+option csharp_namespace = "reminders";
+option go_package = "reminders";
+option java_multiple_files = true;
+option java_package = "reminders";
+
+service Reminders {
+    // Crear un recordatorio para un miembro del equipo
+    rpc CreateReminder(CreateReminderRequest) returns (CreateReminderResponse) {}
+}
+
+message CreateReminderRequest {
+    // Mensaje del recodatorio para el compañero del equipo
+    string mensaje = 1;
+    // Fecha límite para cumplir con el recordatorio
+    // si es que es una tarea.
+    // Debe venir indicada como ISO 8601 
+    //Tip:  Es importante documentar estas cuestiones sobre estandares
+    satring deadline = 2;
+    // listado de tags para el reminder
+    repeated string tags = 3;
+    // nombre del miembro del equipo
+    // Tip: Si pusiste un id del miembro del equipo esta correcto
+    string memberName =4; 
+    // Este es la prioridad en que debe ser atendido este reminder
+    // Tip: no te preocupes si pusiste un ENUM como LOW, MEDIUM, HIGHT
+    // Igual esta bien ! :D 
+    int32 priority = 5;
+}
+
+message CreateReminderResponse {
+    // Identificador del reminder creado
+    // Tip: no te preocupes si pusiste un int32
+    // esto depende más de la implementación
+    string id = 1;
+    // Mensaje del recodatorio para el compañero del equipo
+    string mensaje = 2;
+    // Fecha límite para cumplir con el recordatorio
+    // si es que es una tarea.
+    // Debe venir indicada como ISO 8601 
+    //Tip:  Es importante documentar estas cuestiones sobre estandares
+    satring deadline = 3;
+    // listado de tags para el reminder
+    repeated string tags = 4;
+    // nombre del miembro del equipo
+    // Tip: Si pusiste un id del miembro del equipo esta correcto
+    string memberName =5; 
+    // Este es la prioridad en que debe ser atendido este reminder
+    // Tip: no te preocupes si pusiste un ENUM como LOW, MEDIUM, HIGHT
+    // Igual esta bien ! :D 
+    int32 priority = 5;
+}

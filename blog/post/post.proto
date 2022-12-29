@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package post;
+
+message Post {
+
+    string name = 1; 
+    string body = 2;
+    int32 num_likes = 3;
+    bytes image = 4; 
+    Author autor =5;
+    bool is_premium =6; 
+
+}
+
+message Author {
+    string identifier = 1; 
+    string name = 3; 
+}
