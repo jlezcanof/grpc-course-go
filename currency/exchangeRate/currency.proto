@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package currency;
+
+option go_package = "currency/exchangeRate";
+
+
+message Currency {
+    string currency_origin = 1;
+    string currency_target = 2;
+  }
+
+
+message CurrencyRequest {
+  Currency currency = 1;
+}
+
+message CurrencyResponse {
+    string exchange_value = 1; 
+    string code = 2;
+    string date_validate_change =3;    
+}
+
+service CurrencyService { 
+        rpc ExhangeRate (CurrencyRequest) returns (stream CurrencyResponse);
+}

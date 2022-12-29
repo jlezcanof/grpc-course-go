@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+// Espero no lo hayas olvidado :D 
+package reminders;
+
+// No es requisito de esta funcionalidad pero es bueno tenerlo
+// para la generación de código en diferentes lenguajes
+
+option csharp_namespace = "reminders";
+option go_package = "reminders";//currency/exchangeRate
+option java_multiple_files = true;
+option java_package = "reminders";
+
+service ExchangeRates {
+    // Crear un recordatorio para un miembro del equipo
+    rpc ExchangeRateStream(ExchangeRateRequest) returns (stream ExchangeRateResponse) {}
+}
+
+message ExchangeRateRequest {
+    // Moneda origen con la que se comprará
+    // La moneda esta dada con el ISO 4217
+    // Example : MXN
+    string origin = 1;
+    // Moneda objetivo a la cual se comprará
+    // La moneda esta dada con el ISO 4217
+    // Example : USD
+    string target = 2;
+}
+
+message ExchangeRateResponse {
+    // Valor de cambio de la divisa
+    double value = 1;
+    // Código de cambio para hacer valido el
+    // valor de cambio
+    string code = 2;
+    // Fecha limite a la cual es valido el cambio
+    // Debe venir indicada como ISO 8601 
+    // Tip: Los periodos de validez a veces son muy cortos
+    // o largos si por ejemplo se tiene preferencia
+    // Ej : entre 5minutos o a veces horas
+    string maturityDate = 3;
+     // Moneda origen con la que se comprará
+    // La moneda esta dada con el ISO 4217
+    // Example : MXN
+    string origin = 1;
+    // Moneda objetivo a la cual se comprará
+    // La moneda esta dada con el ISO 4217
+    // Example : USD
+    string target = 2;
+}
