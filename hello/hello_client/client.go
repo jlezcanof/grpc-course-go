@@ -37,11 +37,11 @@ func main() {
 
 	//helloUnary(c)
 
-	helloServerStreaming(c)
+	//helloServerStreaming(c)
 
 	// goodbyeClientStreaming(c)
 
-	//goodbyeBidiStreaming(c)
+	goodbyeBidiStreaming(c)
 }
 
 func helloUnary(c hellopb.HelloServiceClient) {

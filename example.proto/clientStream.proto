@@ -1,0 +1,82 @@
+syntax = "proto3";
+
+// Espero no lo hayas olvidado :D 
+package shippings;
+
+// No es requisito de esta funcionalidad pero es bueno tenerlo
+// para la generación de código en diferentes lenguajes
+
+option csharp_namespace = "shippings";
+option go_package = "shippings";
+option java_multiple_files = true;
+option java_package = "shippings";
+
+service Shippings {
+    rpc CreateShipping(stream ShippingRequest) returns (ShippingResponse){};
+}
+
+message ShippingRequest {
+    // Datos de la orden
+    // Tip: recuerda que es buen practica
+    // mantener ordenados los datos
+    Order order = 1;
+    // Persona que recibira el paquete
+    Receiver receiverName = 3;
+    // Id de la dirección seleccionada
+    string addressId = 4;
+    // Indicador para saber si tendrá un envío preferente
+    bool preferential = 5; 
+}
+
+message ShippingResponse {
+    // Número del envío
+    string number = 1;
+    // Monto total de la orden
+    Money amount = 2;
+    // Número para que el cliente pueda hacer seguimiento
+    // del envío
+    string trackingNumber = 3;
+    // Fecha estimada de entrega
+    // La moneda esta dada con el ISO 4217
+    string estimatedDate = 4;
+    // Persona que recibira el paquete
+    // Tip: Se condidero en la salida debería ir también
+    // quien va a recibir el paquete
+    Receiver receiverName = 5;
+}
+
+// Tip: El diseñador decidio hacerlo un objeto
+// porque hablando con el equipo, pudiera ser
+// que en el futuro se pidan mas datos
+// como contacto del receiver o un id de identificación
+// y esos datos deberán estar agrupado en 1 solo lugar
+message Receiver {
+    string name = 1;
+}
+
+message Order {
+    // Folio de la orden
+    string folio = 1;
+    // Monto de la orden 
+    Amount amount = 2;
+}
+
+// Ejemplo tomado de un proto de google
+// https://github.com/googleapis/api-common-protos/blob/master/google/type/money.proto
+// Represents an amount of money with its currency type.
+message Money {
+    // The 3-letter currency code defined in ISO 4217.
+    string currency_code = 1;
+  
+    // The whole units of the amount.
+    // For example if `currencyCode` is `"USD"`, then 1 unit is one US dollar.
+    int64 units = 2;
+  
+    // Number of nano (10^-9) units of the amount.
+    // The value must be between -999,999,999 and +999,999,999 inclusive.
+    // If `units` is positive, `nanos` must be positive or zero.
+    // If `units` is zero, `nanos` can be positive, zero, or negative.
+    // If `units` is negative, `nanos` must be negative or zero.
+    // For example $-1.75 is represented as `units`=-1 and `nanos`=-750,000,000.
+    int32 nanos = 3;
+  }
