@@ -15,7 +15,7 @@ import (
 func main() {
 	fmt.Println("Go client is running")
 
-	certFile := "../../ssl/ca.crt"
+	certFile := "../../ssl/calezcano.crt"
 
 	creds, sslErr := credentials.NewClientTLSFromFile(certFile, "")
 
@@ -35,13 +35,13 @@ func main() {
 
 	c := hellopb.NewHelloServiceClient(cc)
 
-	//helloUnary(c)
+	helloUnary(c)
 
 	//helloServerStreaming(c)
 
-	// goodbyeClientStreaming(c)
+	//goodbyeClientStreaming(c)
 
-	goodbyeBidiStreaming(c)
+	//goodbyeBidiStreaming(c)
 }
 
 func helloUnary(c hellopb.HelloServiceClient) {

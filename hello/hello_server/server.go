@@ -116,8 +116,8 @@ func (*server) Goodbye(stream hellopb.HelloService_GoodbyeServer) error {
 func main() {
 	fmt.Println("Hello, Go Server is running")
 
-	certFile := "../../ssl/server.crt"
-	keyFile := "../../ssl/server.pem"
+	certFile := "../../ssl/serverlezcano.crt"
+	keyFile := "../../ssl/serverlezcano.pem"
 
 	creds, sslErr := credentials.NewServerTLSFromFile(certFile, keyFile)
 
