@@ -44,13 +44,13 @@ func main() {
 		log.Fatalf("Failed to create product %v", err)
 	}
 
-	fmt.Printf("Product created %v", createdProduct)
+	fmt.Printf("Product created %v\n", createdProduct)
 
 	// We going to use these product Id through all calls
 	productID := createdProduct.GetProduct().GetId()
 
 	//Reading the product
-	fmt.Println("-----Getting the Product-----")
+	fmt.Println("\n-----Getting the Product-----")
 
 	_, err2 := c.GetProduct(context.Background(), &productpb.GetProductRequest{ProductId: productID})
 	if err2 != nil {
@@ -66,7 +66,7 @@ func main() {
 	fmt.Printf("Product gotten: %v \n", getProductRes)
 
 	// update Product
-	fmt.Println("-----Updating  Product-----")
+	fmt.Println("\n-----Updating  Product-----")
 
 	// It is a new struct productpb with the id of
 	// the already created product and the new name and price
@@ -84,7 +84,7 @@ func main() {
 	fmt.Printf("Product was updated: %v\n", updateRes)
 
 	// Delete Product
-	fmt.Println("-----Deleting Product-----")
+	fmt.Println("\n-----Deleting Product-----")
 
 	deleteRes, deleteErr := c.DeleteProduct(context.Background(), &productpb.DeleteProductRequest{ProductId: productID})
 
