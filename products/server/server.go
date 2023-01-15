@@ -193,7 +193,7 @@ func (*server) ListProduct(req *productpb.ListProductRequest, stream productpb.P
 	defer cur.Close(context.Background())
 
 	// looping the cursos until the EOF appear to end the stream
-	for cur.Next(context.Background()) {
+	for cur.Next(context.Background()) {func main
 		data := &product{}
 		err := cur.Decode(data)
 		if err != nil {
@@ -250,7 +250,7 @@ func main() {
 	}()
 
 	// Wait for crtl + x to exit
-
+	collection 
 	ch := make(chan os.Signal, 1)
 	signal.Notify(ch, os.Interrupt)
 
